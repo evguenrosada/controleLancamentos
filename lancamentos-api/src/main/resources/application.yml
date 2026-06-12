@@ -1,0 +1,33 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: lancamentos-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pontuacao_servicos?currentSchema=lancamentos
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: lancamentos
+    open-in-view: false
+  flyway:
+    enabled: true
+    schemas: lancamentos
+    default-schema: lancamentos
+    create-schemas: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+app:
+  jwt:
+    secret: controle-lancamentos-jwt-secret-change-in-production-min-32-chars
+    expiration-minutes: 60
+  redis:
+    lancamento-events-queue: lancamentos:events
